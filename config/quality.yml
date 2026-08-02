@@ -1,0 +1,35 @@
+# ── Obsidian 插件生态 Weekly Digest — 质量评分配置 ──
+
+# 可信度评分权重（跨生态独立源交叉验证）
+scoring:
+  tier_1_weight: 40      # Tier 1 源每个 40 分
+  tier_2_weight: 25      # Tier 2 源每个 25 分
+  max_score: 100         # 封顶
+  min_score_for_A: 80    # A 级 = 交叉验证 3+ 独立源
+  min_score_for_B: 60    # B 级 = 2 独立源
+  min_score_for_C: 30    # C 级 = 单一源确认
+                          # D 级 = 30 以下 / 仅骨架关键词
+
+# 生态系统独立权重（用于交叉验证）
+ecosystem_weights:
+  official: 1.0          # 官方 (Obsidian 博客/Changelog/Community/Roadmap)
+  english_community: 0.9 # 英文社区 (Reddit, obsidianstats, Medium, YouTube)
+  chinese_community: 0.9 # 中文社区 (Pkmer, 少数派, 什么值得买)
+  dev_ecosystem: 0.9     # 开发者生态 (obsidian-releases, GitHub discussions, MCP registries)
+  ai_ecosystem: 0.9      # AI 生态 (Copilot, Smart Connections, MCP/Agent)
+  global_tools: 0.7      # 通用工具 (Product Hunt, AlternativeTo)
+
+# 5 维度评分权重（Obsidian 领域适配）
+dimension_weights:
+  community_impact: 30       # 社区影响力 — 下载量/star/讨论热度/被引用程度
+  novelty: 25                # 新颖度 — 全新插件首发/前所未有的功能方向/AI/MCP 前沿能力
+  practical_utility: 20      # 实用价值 — 实际解决用户痛点的程度/功能完成度/文档质量
+  security_trust: 15         # 安全与可信 — 权限合理性/安全审计/开发者可信度/官方推荐度
+  ecosystem_significance: 10 # 生态意义 — SDK/MCP/CLI 等基础设施贡献/是否定义新标准
+
+# 质量过滤阈值
+filter:
+  min_title_length: 10     # 标题最短
+  min_desc_length: 30      # 描述最短
+  require_citation: true   # 必须有关联源
+  max_age_days: 14         # 最多 14 天前

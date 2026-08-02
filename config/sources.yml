@@ -1,0 +1,182 @@
+# ── Obsidian 插件生态 Weekly Digest — 信息来源配置 (22 sources × 6 生态) ──
+# 分层：Tier 1 = DDG 真实搜索 (15 sources), Tier 2 = 关键词骨架 (7 sources)
+# 类型: web_search = DDG 新闻
+
+sources:
+  # ═══ Tier 1 — 一手/官方/原创新闻源 (DDG 真实搜索, 15 sources) ═══
+  obsidian_blog:
+    name: "Obsidian 官方博客"
+    tier: 1
+    ecosystem: official
+    type: web_search
+    keywords: ["Obsidian changelog", "Obsidian update", "Obsidian new features", "Obsidian release", "Obsidian 1.2"]
+    max_items: 3
+
+  obsidian_community:
+    name: "Obsidian Community 官方平台"
+    tier: 1
+    ecosystem: official
+    type: web_search
+    keywords: ["Obsidian Community", "Obsidian safety scorecard", "Obsidian verified developer", "Obsidian community plugin directory", "Obsidian plugin review"]
+    max_items: 3
+
+  obsidian_stats:
+    name: "obsidianstats.com"
+    tier: 1
+    ecosystem: english_community
+    type: web_search
+    keywords: ["obsidianstats plugin", "Obsidian plugin downloads", "Obsidian plugin stats", "Obsidian top plugins", "Obsidian plugin trend"]
+    max_items: 3
+
+  pkmer_weekly:
+    name: "Pkmer 中文周报"
+    tier: 1
+    ecosystem: chinese_community
+    type: web_search
+    keywords: ["Obsidian 周报", "Pkmer Obsidian", "Obsidian 插件更新", "Pkmer 插件", "Obsidian 中文社区"]
+    max_items: 3
+
+  sspai_obsidian:
+    name: "少数派 Obsidian"
+    tier: 1
+    ecosystem: chinese_community
+    type: web_search
+    keywords: ["少数派 Obsidian", "Obsidian 插件 推荐", "Obsidian 教程", "少数派 插件", "Obsidian 工作流"]
+    max_items: 3
+
+  smzdm_obsidian:
+    name: "什么值得买 Obsidian"
+    tier: 1
+    ecosystem: chinese_community
+    type: web_search
+    keywords: ["什么值得买 Obsidian", "Obsidian 插件 体验", "Obsidian 笔记 工具", "Obsidian 效率", "Obsidian 插件 测评"]
+    max_items: 3
+
+  reddit_obsidian:
+    name: "r/ObsidianMD"
+    tier: 1
+    ecosystem: english_community
+    type: web_search
+    keywords: ["ObsidianMD plugin", "Obsidian reddit plugin", "Obsidian community", "r/ObsidianMD", "Obsidian plugin recommendation"]
+    max_items: 3
+
+  github_obsidian_releases:
+    name: "GitHub obsidian-releases"
+    tier: 1
+    ecosystem: dev_ecosystem
+    type: web_search
+    keywords: ["obsidian-releases plugin", "Obsidian community plugin release", "Obsidian plugin GitHub", "obsidian plugin PR merged", "Obsidian plugin repository"]
+    max_items: 3
+
+  obsidian_copilot:
+    name: "Copilot for Obsidian"
+    tier: 1
+    ecosystem: ai_ecosystem
+    type: web_search
+    keywords: ["Copilot Obsidian plugin", "Obsidian Copilot update", "Copilot for Obsidian release", "Obsidian RAG Copilot", "Obsidian Copilot new feature"]
+    max_items: 3
+
+  obsidian_dataview:
+    name: "Dataview 插件"
+    tier: 1
+    ecosystem: english_community
+    type: web_search
+    keywords: ["Dataview Obsidian update", "Obsidian Dataview new", "Dataview plugin release", "Obsidian Dataview query", "Dataview plugin update"]
+    max_items: 3
+
+  obsidian_ai_plugins:
+    name: "AI 插件更新"
+    tier: 1
+    ecosystem: ai_ecosystem
+    type: web_search
+    keywords: ["Smart Connections", "Obsidian AI plugin", "Khoj Obsidian", "Obsidian local LLM", "Obsidian AI agent"]
+    max_items: 3
+
+  obsidian_mcp:
+    name: "Obsidian MCP / Agent"
+    tier: 1
+    ecosystem: ai_ecosystem
+    type: web_search
+    keywords: ["Obsidian MCP", "obsidian-skills", "Claude Obsidian plugin", "Obsidian agent", "Model Context Protocol Obsidian"]
+    max_items: 3
+
+  gh_discussions:
+    name: "GitHub Obsidian discussions"
+    tier: 1
+    ecosystem: dev_ecosystem
+    type: web_search
+    keywords: ["Obsidian GitHub discussion", "obsidianmd discussion", "Obsidian API discussion", "Obsidian plugin developer", "Obsidian feature request GitHub"]
+    max_items: 3
+
+  producthunt_obsidian:
+    name: "Product Hunt Obsidian 工具"
+    tier: 1
+    ecosystem: global_tools
+    type: web_search
+    keywords: ["Product Hunt Obsidian", "Obsidian launch", "Obsidian productivity tool", "Obsidian alternative", "Product Hunt note taking"]
+    max_items: 3
+
+  medium_obsidian:
+    name: "Medium Obsidian 写作"
+    tier: 1
+    ecosystem: english_community
+    type: web_search
+    keywords: ["Medium Obsidian plugin", "Obsidian writing Medium", "Obsidian note-taking Medium", "Obsidian workflow article", "Medium Obsidian tips"]
+    max_items: 3
+
+  # ═══ Tier 2 — 二手/聚合/垂直信息源 (关键词骨架, 7 sources) ═══
+  obsidian_forum:
+    name: "Obsidian Forum"
+    tier: 2
+    ecosystem: english_community
+    type: web_search
+    keywords: ["forum.obsidian.md plugin", "Obsidian forum release", "Obsidian forum plugin showcase", "Obsidian forum development", "Obsidian forum plugin update"]
+    max_items: 3
+
+  obsidian_roadmap:
+    name: "Obsidian Roadmap"
+    tier: 2
+    ecosystem: official
+    type: web_search
+    keywords: ["Obsidian roadmap", "Obsidian 1.13", "Obsidian planned features", "Obsidian future update", "Obsidian upcoming features"]
+    max_items: 3
+
+  obsidian_discord:
+    name: "Obsidian Discord"
+    tier: 2
+    ecosystem: english_community
+    type: web_search
+    keywords: ["Obsidian Discord announcement", "Obsidian Discord plugin dev", "Obsidian community Discord", "Obsidian Discord plugin showcase", "Obsidian Discord news"]
+    max_items: 3
+
+  youtube_obsidian:
+    name: "YouTube Obsidian 频道"
+    tier: 2
+    ecosystem: english_community
+    type: web_search
+    keywords: ["YouTube Obsidian plugin", "Obsidian video tutorial", "Obsidian workflow video", "Nicole van der Hoeven Obsidian", "Obsidian plugin review video"]
+    max_items: 3
+
+  tavern_obsidian:
+    name: "Tavern 插件发布"
+    tier: 2
+    ecosystem: dev_ecosystem
+    type: web_search
+    keywords: ["Tavern plugin Obsidian", "Obsidian plugin tavern release", "Obsidian plugin showcase", "Obsidian plugin tavern update", "Obsidian plugin discovery"]
+    max_items: 3
+
+  alternativeto_obsidian:
+    name: "AlternativeTo Obsidian"
+    tier: 2
+    ecosystem: global_tools
+    type: web_search
+    keywords: ["AlternativeTo Obsidian", "Obsidian alternatives", "Obsidian vs Notion", "Obsidian plugins list", "Obsidian similar apps"]
+    max_items: 3
+
+  mcp_tools:
+    name: "MCP 服务器注册表"
+    tier: 2
+    ecosystem: dev_ecosystem
+    type: web_search
+    keywords: ["Obsidian MCP server registry", "mcp-obsidian", "obsidian-mcp-server", "MCP tools Obsidian", "MCP server Obsidian GitHub"]
+    max_items: 3

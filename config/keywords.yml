@@ -1,0 +1,100 @@
+# ── Obsidian 插件生态 Weekly Digest — Keywords Config ──
+
+# Positive keywords (confidence boost when matched)
+positive:
+  # 核心插件
+  - "Dataview"
+  - "Templater"
+  - "Excalidraw"
+  - "Tasks"
+  - "Kanban"
+  - "Calendar"
+  - "Git"
+  - "QuickAdd"
+  - "Omnisearch"
+  - "Copilot"
+  - "Smart Connections"
+  - "Bases"
+  - "BRAT"
+  - "Linter"
+  # AI 生态
+  - "MCP"
+  - "agent"
+  - "Claude"
+  - "ChatGPT"
+  - "LLM"
+  - "RAG"
+  - "embedding"
+  - "semantic search"
+  # 开发
+  - "plugin API"
+  - "TypeScript"
+  - "developer"
+  - "manifest"
+  - "release"
+  # 社区
+  - "update"
+  - "new plugin"
+  - "changelog"
+  - "version"
+  # 安全
+  - "malware"
+  - "security"
+  - "review"
+  - "safety"
+  - "vulnerability"
+  # 中文
+  - "插件"
+  - "更新"
+  - "推荐"
+  - "周报"
+  - "笔记"
+
+# Negative keywords (demote / filter out)
+negative:
+  - "crypto"
+  - "NFT"
+  - "gaming"
+  - "pure finance"
+  - "cryptocurrency"
+  - "stock trading"
+
+# Tracked entities (extra attention)
+tracked_entities:
+  # Plugin names
+  plugins:
+    - "Dataview"
+    - "Templater"
+    - "Excalidraw"
+    - "Tasks"
+    - "Copilot"
+    - "Smart Connections"
+    - "QuickAdd"
+    - "Omnisearch"
+    - "Bases"
+    - "Linter"
+    - "BRAT"
+    - "Remotely Save"
+    - "Git"
+    - "Kanban"
+    - "Calendar"
+    - "Iconize"
+    - "Style Settings"
+    - "Advanced Tables"
+    - "Claudian"
+    - "Khoj"
+  # Developers
+  developers:
+    - "kepano"
+    - "Steph Ango"
+    - "logancyang"
+    - "Liam Cain"
+    - "SikandarJamil"
+    - "brianpetro"
+    - "blacksmithgu"
+    - "chhoumann"
+    - "obsidian-tasks-group"
+  # Companies
+  companies:
+    - "Obsidian"
+    - "Dynalist"
