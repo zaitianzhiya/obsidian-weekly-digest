@@ -1,12 +1,12 @@
 # ── Obsidian Plugins Weekly Digest Watchdog ──
-# 3× Tuesday check → dispatch main workflow if report missing
+# Tue + Wed checks check → dispatch main workflow if report missing
 name: Watchdog — Weekly Dispatch
 
 on:
   schedule:
-    - cron: '0 0 * * 2'     # Tue 08:00 CST
-    - cron: '30 1 * * 2'    # Tue 09:30 CST
-    - cron: '0 5 * * 2'     # Tue 13:00 CST
+    - cron: '15 13 * * 2'
+    - cron: '15 17 * * 2'
+    - cron: '15 3 * * 3'
   workflow_dispatch: {}
 
 jobs:
@@ -21,8 +21,8 @@ jobs:
       - name: Check if weekly report exists
         id: check
         run: |
-          WEEK=$(date +'%Y-W%V')
-          REPORT="output/weekly/$(date +'%Y')/${WEEK}.md"
+          WEEK=$(date +%G-W%V)
+          REPORT="output/weekly/${WEEK%%-*}/${WEEK}.md"
           if [ -f "$REPORT" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "Report already exists for ${WEEK}, nothing to do"

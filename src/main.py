@@ -1,6 +1,7 @@
 """Orchestrator: collect → filter → score → AI → render pipeline."""
 
 import argparse
+import re
 import os
 import sys
 import yaml
@@ -99,14 +100,29 @@ OBSIDIAN_CATEGORY_KEYWORDS: dict[str, list[str]] = {
 
 
 def _auto_categorize(record: EventRecord, config: dict) -> list[str]:
-    """Obsidian-domain keyword classification."""
-    text = f"{record.title} {record.description}".lower()
+    """Auto-classify based on title keyword matching (word-boundary for ASCII, substring for CJK)."""
+    text = (record.title or "").lower()
+    category_mapping = config.get("category_mapping", {})
     matched: list[str] = []
-    for cat_id, keywords in OBSIDIAN_CATEGORY_KEYWORDS.items():
-        if any(kw.lower() in text for kw in keywords):
-            matched.append(cat_id)
-    return matched[:3]  # max 3 categories per event
+    for cat_id, keywords in category_mapping.items():
+        for kw in keywords:
+            if _kw_match((kw or "").lower(), text):
+                cat_name = cat_id
+                for cc in config.get("categories", []):
+                    if cc.get("id") == cat_id:
+                        cat_name = cc.get("name", cat_id)
+                        break
+                matched.append(cat_name)
+                break
+    return matched
 
+
+def _kw_match(kw: str, text: str) -> bool:
+    if not kw:
+        return False
+    if any("\u4e00" <= ch <= "\u9fff" for ch in kw):
+        return kw in text
+    return re.search(rf"(?<![a-z0-9]){re.escape(kw)}(?![a-z0-9])", text) is not None
 
 def _merge_records(records: list[EventRecord]) -> list[EventRecord]:
     """Merge records with same event_id, combining citation chains."""
@@ -130,130 +146,21 @@ def _generate_cn_titles(records: list[EventRecord]) -> None:
     """Generate Chinese titles for ALL event records via LLM batch translation.
 
     Strategy: LLM translates all events in batches (15 per call).
-    Falls back to keyword pre-processing only if no LLM key is available.
+    Skipped entirely when no LLM key is configured (keyword substitution
+    produced mixed-language garbage).
     """
+    try:
+        from src.ai.llm_client import LLMClient
+        _llm_client = LLMClient()
+    except Exception:
+        _llm_client = None
+    if _llm_client is None:
+        # No LLM key configured — leave titles untranslated instead of
+        # emitting mixed-language keyword substitutions.
+        print("[CN translate] No LLM key — skipping Chinese title generation")
+        return
+
     import re
-
-    # ── Preprocessing: longest-match-first keyword substitution ──
-    # Sort DESCENDING by length so "Smart Connections" matches before "Connections"
-    _PREPROCESS: list[tuple[str, str]] = sorted([
-        # Multi-word plugin names FIRST (keep as proper nouns in CN context)
-        ("Smart Connections", "Smart Connections"),
-        ("Smart Composer", "Smart Composer"),
-        ("Text Generator", "Text Generator"),
-        ("Remotely Save", "Remotely Save"),
-        ("Style Settings", "Style Settings"),
-        ("Advanced Tables", "Advanced Tables"),
-        ("Periodic Notes", "Periodic Notes"),
-        ("Better Word Count", "Better Word Count"),
-        ("Model Context Protocol", "MCP"),
-        ("Obsidian Community", "Obsidian 社区"),
-        ("Obsidian Reader", "Obsidian Reader"),
-        ("Web Clipper", "Web Clipper"),
-        ("community plugin", "社区插件"),
-        ("new plugin", "新插件"),
-        ("first release", "首次发布"),
-        ("plugin release", "插件发布"),
-        ("Obsidian Sync", "Obsidian 同步"),
-        ("semantic search", "语义搜索"),
-        ("local model", "本地模型"),
-        ("local models", "本地模型"),
-        ("security review", "安全审查"),
-        ("Safety Scorecard", "安全评分卡"),
-        ("Access Disclosure", "权限披露"),
-        ("Remote Disable", "远程禁用"),
-        ("Obsidian CLI", "Obsidian CLI"),
-        ("plugin API", "插件 API"),
-        ("plugin SDK", "插件 SDK"),
-        ("obsidian-releases", "obsidian-releases"),
-        ("obsidian-skills", "obsidian-skills"),
-        ("obsidian-mcp-server", "obsidian-mcp-server"),
-        ("mcp-obsidian", "mcp-obsidian"),
-        ("Second Brain", "第二大脑"),
-        ("artificial intelligence", "AI"),
-        ("note-taking", "笔记"),
-        ("data center", "数据中心"),
-        # Single-word plugins / products (keep proper nouns)
-        ("Dataview", "Dataview"), ("Templater", "Templater"),
-        ("Excalidraw", "Excalidraw"), ("QuickAdd", "QuickAdd"),
-        ("Omnisearch", "Omnisearch"), ("Claudian", "Claudian"),
-        ("Khoj", "Khoj"), ("Codian", "Codian"),
-        ("Breadcrumbs", "Breadcrumbs"), ("Outliner", "Outliner"),
-        ("Zettelkasten", "卡片盒笔记法"),
-        ("Obsidian", "Obsidian"), ("Notion", "Notion"),
-        ("Dynalist", "Dynalist"), ("Logseq", "Logseq"),
-        # Companies / platforms
-        ("GitHub", "GitHub"), ("Reddit", "Reddit"),
-        ("Discord", "Discord"), ("Product Hunt", "Product Hunt"),
-        ("Pkmer", "Pkmer"), ("YouTube", "YouTube"),
-        ("Google", "谷歌"), ("Microsoft", "微软"),
-        ("OpenAI", "OpenAI"), ("Anthropic", "Anthropic"),
-        ("Claude", "Claude"), ("ChatGPT", "ChatGPT"),
-        ("Apple", "苹果"), ("Meta", "Meta"),
-        # AI / technical terms
-        ("MCP", "MCP"), ("RAG", "RAG"), ("LLM", "大模型"),
-        ("AI agent", "AI Agent"), ("AI agents", "AI Agent"),
-        ("AI plugin", "AI 插件"), ("AI plugins", "AI 插件"),
-        ("embedding", "向量嵌入"), ("embeddings", "向量嵌入"),
-        ("Ollama", "Ollama"), ("vault", "笔记库"),
-        ("backlink", "反向链接"), ("backlinks", "反向链接"),
-        ("frontmatter", "frontmatter"), ("TypeScript", "TypeScript"),
-        ("changelog", "更新日志"), ("roadmap", "路线图"),
-        ("milestone", "里程碑"), ("release", "发布"),
-        ("released", "发布"), ("releases", "发布"),
-        ("update", "更新"), ("updated", "更新"),
-        ("updates", "更新"), ("announced", "宣布"),
-        ("launched", "推出"), ("introduced", "推出"),
-        ("published", "发布"),
-        ("theme", "主题"), ("themes", "主题"),
-        ("plugin", "插件"), ("plugins", "插件"),
-        ("workflow", "工作流"), ("workspace", "工作区"),
-        ("database", "数据库"), ("query", "查询"),
-        ("sync", "同步"), ("backup", "备份"),
-        ("encryption", "加密"), ("security", "安全"),
-        ("vulnerability", "漏洞"), ("malware", "恶意软件"),
-        ("malicious", "恶意"),
-        ("downloads", "下载量"), ("download", "下载"),
-        ("community", "社区"), ("official", "官方"),
-        ("developer", "开发者"), ("developers", "开发者"),
-        ("notes", "笔记"), ("note", "笔记"),
-        # Geography / generic
-        ("China", "中国"), ("Chinese", "中国"),
-        ("U.S.", "美国"), ("United States", "美国"),
-        ("Japan", "日本"), ("Korea", "韩国"),
-        ("Europe", "欧洲"), ("European", "欧洲"),
-        ("new", "新"), ("New", "新"),
-        ("first", "首个"), ("First", "首个"),
-        ("best", "最佳"), ("Best", "最佳"),
-        ("largest", "最大"), ("Largest", "最大"),
-        ("global", "全球"), ("Global", "全球"),
-        ("world", "全球"), ("World", "全球"),
-        ("AI", "AI"), ("API", "API"), ("SDK", "SDK"),
-        ("CLI", "CLI"), ("iOS", "iOS"), ("Android", "Android"),
-        ("web", "Web"), ("mobile", "移动端"),
-        ("desktop", "桌面端"), ("Windows", "Windows"),
-        ("macOS", "macOS"), ("Linux", "Linux"),
-    ], key=lambda x: -len(x[0]))
-
-    for r in records:
-        en = r.title.strip()
-        cn = en
-        for term, cn_term in _PREPROCESS:
-            idx = 0
-            while True:
-                idx = cn.find(term, idx)
-                if idx == -1:
-                    break
-                before_ok = idx == 0 or not cn[idx - 1].isalnum() and cn[idx - 1] != "'"
-                after_ok = (idx + len(term) == len(cn)
-                            or not cn[idx + len(term)].isalnum() and cn[idx + len(term)] != "'")
-                if before_ok and after_ok:
-                    cn = cn[:idx] + cn_term + cn[idx + len(term):]
-                    idx += len(cn_term)
-                else:
-                    idx += 1
-        cn = re.sub(r'\s{2,}', ' ', cn).strip()
-        r.title_cn = cn if cn != en else ""
 
     # ── LLM batch translation for ALL events ──
     try:
@@ -340,19 +247,22 @@ def run_weekly(config: dict):
     merged = _merge_records(records)
     print(f"[Weekly] Merged: {len(merged)} unique events (from {len(records)} raw)")
 
-    dedup = Deduplicator(str(ROOT / "data" / "state.json"))
-    new_records, seen = dedup.deduplicate(merged)
+    qf = QualityFilter(config)
+    filtered, qstats = qf.filter(merged)
+    print(f"[Weekly] Quality filter: {qstats}")
+    if not filtered:
+        print("[Weekly] No records passed quality filter.")
+        return
+
+    dedup = Deduplicator(str(ROOT / "data" / "dedup_state.json"))
+    new_records, seen = dedup.deduplicate(filtered)
     print(f"[Weekly] Dedup: {len(new_records)} new / {seen} already seen")
 
     if not new_records:
         print("[Weekly] All events already seen this cycle.")
         return
 
-    # Filter + score
-    qf = QualityFilter(config)
     scorer = Scorer(config)
-
-    new_records = qf.filter(new_records)
     new_records = scorer.score(new_records)
     new_records.sort(key=lambda r: r.confidence_score, reverse=True)
 
@@ -383,15 +293,19 @@ def run_weekly(config: dict):
         print(f"[Weekly] AI skipped (will render data-only report): {e}")
 
     # Render
-    renderer = MarkdownRenderer(str(ROOT / "output"))
+    category_order = [c.get("name") for c in config.get("categories", [])]
+    renderer = MarkdownRenderer(str(ROOT / "output"), category_order=category_order)
     stats = {
         "本周采集": len(records),
-        "去重后": len(new_records),
+        "历史已见": seen,
+        "质量过滤排除": sum(qstats.values()) - qstats["kept"] - qstats["fallback_excluded"],
+        "占位骨架排除": qstats["fallback_excluded"],
         "新事件": len(new_records),
         "可信度分布": grade_str,
         "独立生态覆盖": _eco_coverage(new_records),
     }
     renderer.render_weekly_report(new_records, deep_analysis=deep_analysis, stats=stats)
+    dedup.save()
 
     print(f"[Weekly] ✅ Done — report written to output/")
     print(f"[Weekly] Top event: {new_records[0].title[:80] if new_records else 'N/A'}")
