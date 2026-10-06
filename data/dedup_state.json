@@ -2,7 +2,7 @@
   "events": {
     "evt:a2def8b6ac4d": {
       "first_seen_week": "2026-W40",
-      "last_seen_week": "2026-W40",
+      "last_seen_week": "2026-W41",
       "title": "Obsidian Energy Ltd. (OBE)"
     },
     "evt:deb5c5794853": {
@@ -84,6 +84,41 @@
       "first_seen_week": "2026-W40",
       "last_seen_week": "2026-W40",
       "title": "These Are the Best Price-Tracking Tools I Use As a Deals Writer"
+    },
+    "evt:21bbab52701c": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "MCP Connector for Obsidian"
+    },
+    "evt:3b94392f9a9d": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "CHANGELOG.md"
+    },
+    "evt:936bbf5c1b99": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "2026 NFL Defense Rankings: Team Pass and Rush Stats"
+    },
+    "evt:049c0dc8dd91": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "WSO2, líder en APIs para IA agéntica según Forrester"
+    },
+    "evt:a1d9e7f73c2f": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "Full Episode: Groups expected to campaign for and against Florida's property tax proposal, and Trump signs AI executive order"
+    },
+    "evt:d6b57d8edc4d": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "[AI네이티브 교육 10월 일정] 지식 설계부터 에이전틱 엔터프라이즈까지...실전 교육·세미나 개최"
+    },
+    "evt:bea70b05a5b9": {
+      "first_seen_week": "2026-W41",
+      "last_seen_week": "2026-W41",
+      "title": "Product Recall Insurance: Protect Your Business from Financial Loss"
     }
   }
 }
