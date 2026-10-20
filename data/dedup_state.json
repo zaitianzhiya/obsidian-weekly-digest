@@ -2,7 +2,7 @@
   "events": {
     "evt:a2def8b6ac4d": {
       "first_seen_week": "2026-W40",
-      "last_seen_week": "2026-W41",
+      "last_seen_week": "2026-W43",
       "title": "Obsidian Energy Ltd. (OBE)"
     },
     "evt:deb5c5794853": {
@@ -32,7 +32,7 @@
     },
     "evt:f5ce9afd5246": {
       "first_seen_week": "2026-W40",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "机构调研周跟踪：中秋节假日影响，机构关注度环比回落"
     },
     "evt:536619369899": {
@@ -87,7 +87,7 @@
     },
     "evt:21bbab52701c": {
       "first_seen_week": "2026-W41",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "MCP Connector for Obsidian"
     },
     "evt:3b94392f9a9d": {
@@ -122,17 +122,17 @@
     },
     "evt:d31c6d2af402": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "Bilt Obsidian Card review: A slightly complicated but rewarding all-in-one option"
     },
     "evt:272f46894590": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "Which Bilt credit card should you apply for? Here's how the Blue, Obsidian and Palladium compare"
     },
     "evt:e60c8992e398": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "Sri Lanka XI vs India , 3-Day Warm-up Match, Day 2"
     },
     "evt:1e3c7944b8b9": {
@@ -152,13 +152,58 @@
     },
     "evt:d57764f00121": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W42",
+      "last_seen_week": "2026-W43",
       "title": "Microsoft Corporation (MSFT) Stock Price, News, Quote & History - Yahoo Finance"
     },
     "evt:77066adad25c": {
       "first_seen_week": "2026-W42",
       "last_seen_week": "2026-W42",
       "title": "ServiceNow, Inc. (NOW) Stock Forum & Discussion - Yahoo Finance"
+    },
+    "evt:b2bda7a06d41": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "These 5 plugins turned my Obsidian notes into a daily dashboard"
+    },
+    "evt:dc42996e7ca4": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "Utah Jazz Scores, Stats and Highlights - ESPN"
+    },
+    "evt:3f76a8ee3d4b": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "交易日 16：00～23：00 更新当日净值"
+    },
+    "evt:65bb3ef53a30": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "日期 名称 相关链接 研报 评级 机构"
+    },
+    "evt:b2ec24eb99bc": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "Hackers Hijack OVHcloud GitHub Releases to Distribute Secret-Stealing Malware"
+    },
+    "evt:ede6d2eb493f": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "OVHcloud CLI releases backdoored on GitHub to steal developer secrets"
+    },
+    "evt:579827a81bef": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "Looking Ahead: A Release Calendar of Upcoming Albums in 2026"
+    },
+    "evt:609053c02274": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "Microsoft Corporation (MSFT) Options Chain - Yahoo Finance"
+    },
+    "evt:84854554cf92": {
+      "first_seen_week": "2026-W43",
+      "last_seen_week": "2026-W43",
+      "title": "Microsoft Corporation (MSFT) Latest Stock News & Headlines - Yahoo Finance"
     }
   }
 }
