@@ -122,7 +122,7 @@
     },
     "evt:d31c6d2af402": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W43",
+      "last_seen_week": "2026-W44",
       "title": "Bilt Obsidian Card review: A slightly complicated but rewarding all-in-one option"
     },
     "evt:272f46894590": {
@@ -204,6 +204,31 @@
       "first_seen_week": "2026-W43",
       "last_seen_week": "2026-W43",
       "title": "Microsoft Corporation (MSFT) Latest Stock News & Headlines - Yahoo Finance"
+    },
+    "evt:a1f8f7bb8581": {
+      "first_seen_week": "2026-W44",
+      "last_seen_week": "2026-W44",
+      "title": "CLI changelog"
+    },
+    "evt:d4a7fd7eb598": {
+      "first_seen_week": "2026-W44",
+      "last_seen_week": "2026-W44",
+      "title": "Models changelog"
+    },
+    "evt:8225b475588d": {
+      "first_seen_week": "2026-W44",
+      "last_seen_week": "2026-W44",
+      "title": "Mamdani creates Office of Community Safety, names deputy mayor for the office"
+    },
+    "evt:6045a2a09c57": {
+      "first_seen_week": "2026-W44",
+      "last_seen_week": "2026-W44",
+      "title": "Obsidian Gets a 3D Universe Mode via Maps of the Idea Verse"
+    },
+    "evt:79bff78a3ea1": {
+      "first_seen_week": "2026-W44",
+      "last_seen_week": "2026-W44",
+      "title": "Apple製品で一斉セキュリティアップデート、「macOS Golden Gate 27.2」は260件超"
     }
   }
 }
