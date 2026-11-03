@@ -122,12 +122,12 @@
     },
     "evt:d31c6d2af402": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W44",
+      "last_seen_week": "2026-W45",
       "title": "Bilt Obsidian Card review: A slightly complicated but rewarding all-in-one option"
     },
     "evt:272f46894590": {
       "first_seen_week": "2026-W42",
-      "last_seen_week": "2026-W43",
+      "last_seen_week": "2026-W45",
       "title": "Which Bilt credit card should you apply for? Here's how the Blue, Obsidian and Palladium compare"
     },
     "evt:e60c8992e398": {
@@ -229,6 +229,26 @@
       "first_seen_week": "2026-W44",
       "last_seen_week": "2026-W44",
       "title": "Apple製品で一斉セキュリティアップデート、「macOS Golden Gate 27.2」は260件超"
+    },
+    "evt:731b243b4499": {
+      "first_seen_week": "2026-W45",
+      "last_seen_week": "2026-W45",
+      "title": "IDE changelog"
+    },
+    "evt:40981d0a8cc1": {
+      "first_seen_week": "2026-W45",
+      "last_seen_week": "2026-W45",
+      "title": "Personal OS"
+    },
+    "evt:678cddb69d64": {
+      "first_seen_week": "2026-W45",
+      "last_seen_week": "2026-W45",
+      "title": "agent-plugins"
+    },
+    "evt:2744562903cc": {
+      "first_seen_week": "2026-W45",
+      "last_seen_week": "2026-W45",
+      "title": "現役外資コンサルのAIの使い分け｜時短より「品質」を上げる使い方と、AI社員のつくり方"
     }
   }
 }
